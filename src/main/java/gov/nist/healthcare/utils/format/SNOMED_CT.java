@@ -1,11 +1,9 @@
 package gov.nist.healthcare.utils.format;
 
-import hl7.v2.instance.Simple;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import scala.collection.immutable.List;
 
 public class SNOMED_CT extends CodedElementFormat {
 
@@ -101,7 +99,8 @@ public class SNOMED_CT extends CodedElementFormat {
         }
 
         if (!code.matches("[1-9]\\d+")) {
-            logger.error(String.format("Invalid leading '0' for code %s", code));
+            logger.error(
+                    String.format("Invalid leading '0' for code %s", code));
             return false;
         }
 
@@ -137,8 +136,8 @@ public class SNOMED_CT extends CodedElementFormat {
         String checkDigit = StringUtils.right(code, 1);
         int checkSum = verhoeffDihedralGroupD5Check(code);
         if (checkSum != 0) {
-            logger.error(String.format(
-                    "Invalid check digit '%s' for code '%s'", checkDigit, code));
+            logger.error(String.format("Invalid check digit '%s' for code '%s'",
+                    checkDigit, code));
             return false;
         }
         return true;
@@ -155,31 +154,4 @@ public class SNOMED_CT extends CodedElementFormat {
         return check;
     }
 
-    private String getValue(List<Simple> simpleElementList) {
-        if (simpleElementList.size() > 1) {
-            throw new IllegalArgumentException("Invalid List size : "
-                    + simpleElementList.size());
-        }
-        if (simpleElementList.size() == 0) {
-            return "";
-        }
-        // only get first element
-        return simpleElementList.apply(0).value().raw();
-    }
-
-    public static void main(String[] args) {
-        // test with some valid codes
-        // System.out.println(SNOMED_CT.isValid("100005"));
-        // System.out.println(SNOMED_CT.isValid("999999990989121104"));
-        // System.out.println(SNOMED_CT.isValid("9940000001126"));
-        // System.out.println(SNOMED_CT.isValid("1290000001117"));
-        // System.out.println(SNOMED_CT.isValid("1290989121103"));
-        // System.out.println(SNOMED_CT.isValid("10989121108"));
-        // System.out.println(SNOMED_CT.isValid("10000001105"));
-        // System.out.println(SNOMED_CT.isValid("9940000001029"));
-        // System.out.println(SNOMED_CT.isValid("1290023401015"));
-        // System.out.println(SNOMED_CT.isValid("1290023401004"));
-        // System.out.println(SNOMED_CT.isValid("100022"));
-        // System.out.println(SNOMED_CT.isValid("100014"));
-    }
 }

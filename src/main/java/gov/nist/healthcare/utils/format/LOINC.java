@@ -1,8 +1,5 @@
 package gov.nist.healthcare.utils.format;
 
-import hl7.v2.instance.Simple;
-import scala.collection.immutable.List;
-
 public class LOINC extends CodedElementFormat {
 
     private static String codeSystemValue = "LN";
@@ -91,15 +88,4 @@ public class LOINC extends CodedElementFormat {
         return result.toString();
     }
 
-    private String getValue(List<Simple> simpleElementList) {
-        if (simpleElementList.size() > 1) {
-            throw new IllegalArgumentException("Invalid List size : "
-                    + simpleElementList.size());
-        }
-        if (simpleElementList.size() == 0) {
-            return "";
-        }
-        // only get first element
-        return simpleElementList.apply(0).value().raw();
-    }
 }
