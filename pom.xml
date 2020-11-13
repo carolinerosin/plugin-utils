@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>gov.nist.healthcare</groupId>
 	<artifactId>hl7-v2-validation-plugin-utils</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>hl7-v2-validation-plugin-utils</name>
 	<build>
 		<pluginManagement>
@@ -31,7 +31,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/carolinerosin/plugin-utils.git</connection>
 		<developerConnection>scm:git:https://github.com/carolinerosin/plugin-utils.git</developerConnection>
-  	  <tag>hl7-v2-validation-plugin-utils-0.0.1</tag>
+  	  <tag>HEAD</tag>
   </scm>
 	<distributionManagement>
 		<repository>
